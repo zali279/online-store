@@ -1,6 +1,5 @@
 package com.store.demo.controller;
 
-import com.store.demo.model.Product;
 import com.store.demo.service.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

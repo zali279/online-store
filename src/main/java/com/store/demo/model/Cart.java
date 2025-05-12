@@ -29,5 +29,5 @@ public class Cart {
 
     @CreationTimestamp
     @Column(updatable = false)
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 }
