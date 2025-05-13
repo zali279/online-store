@@ -1,6 +1,7 @@
 package com.store.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +19,7 @@ public class Product {
     private double price;
     private boolean discounted;
     private double discountAmount;
+
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;

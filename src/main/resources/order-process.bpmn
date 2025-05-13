@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1xu8giy" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.34.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
-  <bpmn:process id="Process_090lxeg" isExecutable="true">
+  <bpmn:process id="OrderReview" name="OrderReview" isExecutable="true" camunda:historyTimeToLive="P30D">
     <bpmn:startEvent id="StartEvent_1" name="start review order ">
       <bpmn:outgoing>Flow_11sjstf</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_11sjstf" sourceRef="StartEvent_1" targetRef="Activity_0thwc6a" />
-    <bpmn:userTask id="Activity_0thwc6a" name="Review Discounted Order" camunda:assignee="admin">
+    <bpmn:userTask id="Activity_0thwc6a" name="Review Discounted Order" camunda:assignee="zahraa">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="approved" label="approved" type="boolean" />
+          <camunda:formField id="approved" label="approved" type="boolean">
+            <camunda:properties />
+            <camunda:validation />
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_11sjstf</bpmn:incoming>
@@ -42,7 +45,7 @@
     <bpmn:sequenceFlow id="Flow_01poq2c" sourceRef="Activity_17dpbob" targetRef="Event_0cvui7c" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_090lxeg">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="OrderReview">
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="182" y="102" width="36" height="36" />
         <bpmndi:BPMNLabel>

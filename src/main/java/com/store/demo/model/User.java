@@ -1,10 +1,13 @@
 package com.store.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Data
+@Builder
+@Table
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

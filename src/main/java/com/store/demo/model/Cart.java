@@ -13,6 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

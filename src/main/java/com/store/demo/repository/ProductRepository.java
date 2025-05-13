@@ -12,4 +12,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product,Long > {
     Page<Product> findByPriceBetweenAndDiscounted(double min , double max , boolean discounted,Pageable pageable);
     Page<Product> findByPriceBetween(double min , double max ,Pageable pageable);
+    List<Product> findByPriceBetween(double min , double max);
 }

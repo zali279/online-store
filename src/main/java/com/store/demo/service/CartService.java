@@ -30,7 +30,7 @@ public class CartService {
     private final CartRepository cartRepository;
 
     public Cart placeOrder(Long productId , String email) throws IOException {
-        //find user + priduct
+        //find user + product
         Optional<Product> product = productRepository.findById(productId);
         User user = userRepository.findByEmail(email);
 
@@ -47,7 +47,7 @@ public class CartService {
             review.put("orderId", cart.getId());
             review.put("email",email);
 
-//            runtimeService.startProcessInstanceByKey("OrderReview", review);
+            runtimeService.startProcessInstanceByKey("OrderReview", review);
 
 
         }else {
