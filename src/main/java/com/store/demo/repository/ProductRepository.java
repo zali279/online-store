@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long > {
-    Page<Product> findByPriceBetweenAndDiscounted(double min , double max , boolean discounted,Pageable pageable);
-    Page<Product> findByPriceBetween(double min , double max ,Pageable pageable);
+    List<Product> findByPriceBetweenAndDiscounted(double min , double max , boolean discounted);
     List<Product> findByPriceBetween(double min , double max);
 }

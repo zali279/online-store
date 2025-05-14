@@ -1,6 +1,8 @@
 package com.store.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,11 +20,11 @@ public class Product {
     private String description;
     private double price;
     private boolean discounted;
-    private double discountAmount;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+    @Min(0)
+    @Max(100)
+    private double discountPercentage;
+
 
     @CreationTimestamp
     @Column(updatable = false)

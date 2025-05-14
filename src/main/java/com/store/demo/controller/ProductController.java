@@ -1,5 +1,6 @@
 package com.store.demo.controller;
 
+import com.store.demo.dto.ProductDTO;
 import com.store.demo.model.Product;
 import com.store.demo.service.ProductService;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public ResponseEntity<Page<Product>> getAllProduct(
+    public ResponseEntity<List<ProductDTO>> getAllProduct(
             @RequestParam(required = false ,defaultValue = "0" ) double minPrice,
             @RequestParam(required = false, defaultValue = "" +Double.MAX_VALUE ) double maxPrice,
             @RequestParam(required = false) boolean discount,

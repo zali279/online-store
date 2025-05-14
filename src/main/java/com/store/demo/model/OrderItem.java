@@ -1,26 +1,30 @@
 package com.store.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@Data
 @Entity
-@Table
-public class CartItem {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrderItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private int quantity;
 
+    private double price;
+
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
-
-    private String status;
+    @JoinColumn(name = "order_id")
+    private Order order;
 }

@@ -35,7 +35,7 @@
       <bpmn:incoming>Flow_1r00ymv</bpmn:incoming>
       <bpmn:outgoing>Flow_1b5gzhw</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_17dpbob" name="Approve order" camunda:delegateExpression="approveOrderDelegate">
+    <bpmn:serviceTask id="Activity_17dpbob" name="Approve order" camunda:delegateExpression="#{approveOrderDelegate}">
       <bpmn:incoming>Flow_1gsm2i4</bpmn:incoming>
       <bpmn:outgoing>Flow_01poq2c</bpmn:outgoing>
     </bpmn:serviceTask>

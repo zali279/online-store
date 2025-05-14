@@ -1,32 +1,32 @@
 package com.store.demo.delegate;
 
-import com.store.demo.model.Cart;
-import com.store.demo.repository.CartRepository;
+import com.store.demo.model.CartItem;
+import com.store.demo.repository.CartItemRepository;
 import com.store.demo.service.EmailSender;
-import com.store.demo.service.PdfGenerator;
+import lombok.RequiredArgsConstructor;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.stereotype.Component;
 
 
 @Component("approveOrderDelegate" )
+@RequiredArgsConstructor
 public class ApproveOrderDelegate implements JavaDelegate {
 
-    private CartRepository cartRepository;
-    private EmailSender emailSender;
+    private final EmailSender emailSender;
+    private final CartItemRepository cartItemRepository;
+
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        Long orderId = (Long) delegateExecution.getVariable("orderId");
+        Long itemId = (Long) delegateExecution.getVariable("itemId");
         String email = (String) delegateExecution.getVariable("email");
 
-        Cart cart = cartRepository.findById(orderId).orElseThrow();
-        cart.setStatus("APPROVED");
-        cartRepository.save(cart);
+        CartItem cartItem = cartItemRepository.findById(itemId).orElseThrow();
+        cartItem.setStatus("APPROVED");
+        cartItemRepository.save(cartItem);
 
-        emailSender.sendEmail(email,"Order Approved", "Your order has been approved .");
-
-        //send pdf
-        PdfGenerator.generateReceipt(cart.getItems(),"test.pdf");
+        //send email
+        emailSender.sendEmail(email,"Item Approved", "the item has been approved .");
 
     }
 }

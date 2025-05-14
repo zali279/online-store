@@ -1,5 +1,7 @@
 package com.store.demo.controller;
 
+import com.store.demo.model.Cart;
+import com.store.demo.model.CartItem;
 import com.store.demo.service.CartService;
 import lombok.AllArgsConstructor;
 import org.camunda.bpm.engine.RuntimeService;
@@ -7,33 +9,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/cart")
 @AllArgsConstructor
 public class CartController {
-   private CartService cartService;
-   private final RuntimeService runtimeService;
-
-//   public ResponseEntity<?> addToCart(@RequestBody Product product){
-//        return null;
-//   }
+   private final CartService cartService;
 
    @PostMapping("/{productId}")
-   public ResponseEntity<?> placeOrder (@PathVariable Long productId , @RequestParam String email) throws IOException {
-      return ResponseEntity.ok(cartService.placeOrder(productId,email));
+   public ResponseEntity<CartItem> addToCart(@PathVariable Long productId, @RequestParam String email){
+        return ResponseEntity.ok(cartService.addToCart(productId,email));
    }
+
+   @GetMapping("")
+   public ResponseEntity<Cart> getMyCart(@RequestParam String email){
+      return ResponseEntity.ok(cartService.getMyCart(email));
+   }
+
 
    @PostMapping("/checkout")
-   public ResponseEntity<?> checkout (){
-      return null;
+   public ResponseEntity<?> checkout (@RequestParam String email) throws IOException {
+      return ResponseEntity.ok(cartService.checkout(email));
    }
 
-   @GetMapping("/history")
-   public ResponseEntity<?> orderHistory(){
-      return null;
-   }
+
 
 }

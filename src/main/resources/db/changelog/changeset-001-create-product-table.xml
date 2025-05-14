@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-<changeSet id="1" author="Zahraa Ali">
+    <changeSet id="1" author="Zahraa Ali">
         <!-- Product table -->
         <createTable tableName="product">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -21,23 +21,20 @@
             <column name="discounted" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
-            <column name="discount_amount" type="DOUBLE">
-                <constraints nullable="true"/>
-            </column>
-            <column name="cart_id" type="BIGINT"/>
+            <column name="discount_amount" type="DOUBLE"/>
             <column name="created_at" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
+            <column name="cart_id" type="BIGINT"/>
+
+
         </createTable>
-    <addForeignKeyConstraint
+        <addForeignKeyConstraint
             baseTableName="product"
             baseColumnNames="cart_id"
             constraintName="fk_product_cart"
             referencedTableName="cart"
             referencedColumnNames="id"
-            deferrable="false"
-            initiallyDeferred="false"
             onDelete="SET NULL"/>
     </changeSet>
-
 </databaseChangeLog>
