@@ -55,7 +55,7 @@ public class CartService {
         cartItemRepository.save(item);
 
         //check discount in product
-        if(product.isDiscounted() && product.getDiscountAmount() > threshold){
+        if(product.isDiscounted() && product.getDiscountPercentage() > threshold){
             //call the camunda to approve
             Map<String, Object> review = new HashMap<>();
             review.put("itemId", item.getId());
@@ -81,6 +81,8 @@ public class CartService {
         List<CartItem> notApprovedItems = cart.getItems().stream()
                 .filter(item -> item.getStatus().equalsIgnoreCase("pending") || item.getStatus().equalsIgnoreCase("rejected"))
                 .toList();
+
+        notApprovedItems.forEach(System.out::println);
 
         if (!notApprovedItems.isEmpty()) {
             // send email about unapproved items
