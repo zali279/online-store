@@ -30,8 +30,8 @@ public class Order {
     private List<OrderItem> items;
 
     private String status;
-
     private Double totalAmount;
+    private String receiptPath;
 
     @CreationTimestamp
     @Column(updatable = false)

@@ -41,7 +41,7 @@ public class CartService {
             cart=cartOptional.get();
         }else {
             cart=new Cart();
-            cart.setUser(user);
+         cart.setUser(user);
             cartRepository.save(cart);
         }
         List<CartItem> items = cart.getItems();
@@ -64,6 +64,7 @@ public class CartService {
         }else {
             //change the status to approve
             item.setStatus("Approved");
+            cartItemRepository.save(item);
 
         }
 
@@ -111,11 +112,14 @@ public class CartService {
 
         order.setItems(orderItems);
         order.setTotalAmount(totalAmount);
-        orderRepository.save(order); // This will also save OrderItems due to cascade
+        order = orderRepository.save(order); // This will also save OrderItems due to cascade
 
 
         //create receipt
-        PdfGenerator.generateReceipt(cart.getItems(),"receipt.pdf");
+        String receiptPath = "receipts/receipt_" + order.getId() + ".pdf";
+        PdfGenerator.generateReceipt(cart.getItems(), receiptPath);
+        order.setReceiptPath(receiptPath);
+        orderRepository.save(order);
 
         //send email with receipt
         emailSender.sendReceipt(email,"Order Approved" ,"Your order has been approved","receipt.pdf");
