@@ -5,7 +5,7 @@
       <bpmn:outgoing>Flow_11sjstf</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_11sjstf" sourceRef="StartEvent_1" targetRef="Activity_0thwc6a" />
-    <bpmn:userTask id="Activity_0thwc6a" name="Review Discounted Order" camunda:assignee="zahraa">
+    <bpmn:userTask id="Activity_0thwc6a" name="Review Discounted Order" camunda:assignee="zahraa" camunda:dueDate="P2D">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="approved" label="approved" type="boolean">
