@@ -122,7 +122,7 @@ public class CartService {
         orderRepository.save(order);
 
         //send email with receipt
-        emailSender.sendReceipt(email,"Order Approved" ,"Your order has been approved","receipt.pdf");
+        emailSender.sendReceipt(email,"Order Approved" ,"Your order has been approved",receiptPath);
 
         return "order complete!";
     }
