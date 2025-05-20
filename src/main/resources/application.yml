@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: demo
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydb
+    username: myuser
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: zahraaalihasan279@gmail.com
+    password: jaea othm xfxz guky
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+discount:
+  threshold: 0.6
+
+camunda:
+  bpm:
+    process-engine-name: default
+    job-execution:
+      enabled: true
+    history-level: full
+    admin-user:
+      id: zahraa
+      password: zahraa
+      first-name: zahraa
