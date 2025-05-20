@@ -2,20 +2,22 @@ package com.store.demo.mapper;
 
 import com.store.demo.dto.ProductDTO;
 import com.store.demo.model.Product;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-public class ProductMapper {
-    public static ProductDTO toDto(Product product) {
-        ProductDTO dto = new ProductDTO();
-        dto.setName(product.getName());
-        dto.setPrice(product.getPrice());
-        dto.setPriceAfterDiscount(product.isDiscounted()
-                    ? product.getPrice() - (product.getDiscountPercentage()*product.getPrice()/100)
-                    : product.getPrice());
-        dto.setCreatedAt(LocalDateTime.now());
-        return dto;
-    }
+@Mapper(componentModel = "spring")
+public interface ProductMapper {
+
+     @Mapping(target = "priceAfterDiscount", expression = "java(calculatePriceAfterDiscount(product.getPrice(), product.getDiscountPercentage()))")
+     ProductDTO toProductDTO(Product product);
+
+     default double calculatePriceAfterDiscount(double price, double discountPercentage) {
+          double discountedPrice = price - (price * discountPercentage / 100);
+          return BigDecimal.valueOf(discountedPrice)
+                  .setScale(3, RoundingMode.HALF_UP)
+                  .doubleValue();
+     }
 }
-
-

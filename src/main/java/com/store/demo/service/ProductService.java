@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductService {
       private ProductRepository productRepository;
-
+      private ProductMapper productMapper;
 
     @GetMapping
     public List<ProductDTO> getAllProduct(double minPrice, double maxPrice, boolean discount, String sortedBy){
@@ -29,10 +29,10 @@ public class ProductService {
             productList = productRepository.findByPriceBetween(minPrice, maxPrice);
         }
 
-        List<ProductDTO> productDTOList=productList.stream().map(ProductMapper::toDto).toList();
+        List<ProductDTO> productDTOList=productList.stream().map(p -> productMapper.toProductDTO(p)).toList();
 
         if("price".equals(sortedBy)){
-            productDTOList=productDTOList.stream().sorted(Comparator.comparingDouble(ProductDTO::getPriceAfterDiscount)).toList();
+//            productDTOList=productDTOList.stream().sorted(Comparator.comparingDouble(ProductDTO::getPriceAfterDiscount)).toList();
         } else if ("newest".equals(sortedBy)) {
             productDTOList=productDTOList.stream().sorted(Comparator.comparing(ProductDTO::getCreatedAt)).toList();
         }
