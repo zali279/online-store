@@ -34,23 +34,7 @@ public class OrderController {
 
     @GetMapping("/{orderId}/receipt")
     public ResponseEntity<Resource> getReceiptFile(@PathVariable Long orderId) throws IOException {
-        Optional<Order> optionalOrder = orderRepository.findById(orderId);
-
-        if (optionalOrder.isEmpty() || optionalOrder.get().getReceiptPath() == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Path path = Paths.get(optionalOrder.get().getReceiptPath());
-        if (!Files.exists(path)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_PDF)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + path.getFileName() + "\"")
-                .body(resource);
+        return orderService.getReceiptFile(orderId);
     }
 
 }

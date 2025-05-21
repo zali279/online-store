@@ -18,10 +18,10 @@ public class ProductDTO {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    public void setPriceAfterDiscount(double priceAfterDiscount) {
-        this.priceAfterDiscount = BigDecimal.valueOf(priceAfterDiscount)
-                .setScale(3, RoundingMode.HALF_UP)
-                .doubleValue();
-    }
+//    public void setPriceAfterDiscount(double priceAfterDiscount) {
+//        this.priceAfterDiscount = BigDecimal.valueOf(priceAfterDiscount)
+//                .setScale(3, RoundingMode.HALF_UP)
+//                .doubleValue();
+//    }
 
 }

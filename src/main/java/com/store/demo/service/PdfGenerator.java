@@ -1,16 +1,14 @@
 package com.store.demo.service;
 
 import com.store.demo.model.CartItem;
-import com.store.demo.model.Product;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 public class PdfGenerator {
     public static void generateReceipt(List<CartItem> items, String filePath) throws IOException {
